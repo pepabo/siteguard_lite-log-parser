@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'siteguard_lite/log/cli'
+require 'siteguard_lite/log/parser'
+
+options = {
+  type: 'detect',
+  format: 'ltsv',
+  leading_time: false,
+}
+
+opt = OptionParser.new
+opt.on('--type VAL', 'Specify log type. (default: detect)') { |v|
+  options[:type] = v
+}
+opt.on('--leading-time', 'The log have the time string at heading of the line') { |v|
+  options[:leading_time] = true
+}
+opt.parse!(ARGV)
+
+SiteguardLite::Log::CLI.new(options).run
