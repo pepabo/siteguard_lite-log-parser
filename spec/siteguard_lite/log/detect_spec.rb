@@ -81,6 +81,17 @@ RSpec.describe SiteguardLite::Log::Detect do
       it { expect(subject['rule_sig_name']).to eq '' }
     end
 
+    context 'when rule_sig_name 2 or more characters' do
+      let(:sample) {
+        <<~EOD
+          1531397957.965300      0 192.168.0.100 TCP_MISS/000 0 GET http://example.com/?p=<script>alert(%22hello%22)</script> - DIRECT/192.168.1.100 - DETECT-STAT:WAF:RULE_SIG/PART_PARAM_VALUE|PART_GET_PARAM/Content-Type/OFFICIAL/00102001/xss-tag-1::%3cscript%3e:%3cscript%3ealert(%22hello%22)%3c/script%3e: ACTION:BLOCK: JUDGE:BLOCK:0: SEARCH-KEY:1531397957.965300.76402:
+        EOD
+      }
+
+      it { expect(subject['detect_name']).to eq 'RULE_SIG/PART_PARAM_VALUE|PART_GET_PARAM/Content-Type/OFFICIAL/00102001/xss-tag-1' }
+      it { expect(subject['rule_sig_name']).to eq 'Content-Type' }
+    end
+
     context 'when leading time exist' do
       # The downloaded logs have leading time, and the logs saved in the servers do not.
       subject { SiteguardLite::Log::Detect.new(leading_time: true).parse(sample) }
