@@ -13,7 +13,7 @@ module SiteguardLite
       HIERARCHY_CODE = '(?<hierarchy_code>[^\s]+)'.freeze
       CONTENT_TYPE = '(?<content_type>[^\s]+)'.freeze
 
-      RULE_SIG = '(?<detect_name_rule>RULE_SIG)\/(?<rule_sig_part>[^\/]+)\/(?<rule_sig_name>[^\/]?+)\/(?<rule_sig_file>(?:OFFICIAL|CUSTOM))\/(?<rule_sig_id>[^\/]+)\/(?<rule_sig_signature_name>[\w\d-]+)'.freeze
+      RULE_SIG = '(?<detect_name_rule>RULE_SIG)\/(?<rule_sig_part>[^\/]+)\/(?<rule_sig_name>[^\/]*+)\/(?<rule_sig_file>(?:OFFICIAL|CUSTOM))\/(?<rule_sig_id>[^\/]+)\/(?<rule_sig_signature_name>[\w\d-]+)'.freeze
       WAF_FILTER = '(?<detect_name_rule>WAF_FILTER)'.freeze
       RULE_URLDECODE = '(?<detect_name_rule>RULE_URLDECODE)'.freeze
       RULE_PARAMS_NUM = '(?<detect_name_rule>RULE_PARAMS_NUM)\/(?<rule_params_num_part>[^\/]+)\/(?<rule_params_num_threshold>\d+)'.freeze
