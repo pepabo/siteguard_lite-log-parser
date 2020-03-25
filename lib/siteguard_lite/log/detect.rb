@@ -18,7 +18,7 @@ module SiteguardLite
       RULE_URLDECODE = '(?<detect_name_rule>RULE_URLDECODE)'.freeze
       RULE_PARAMS_NUM = '(?<detect_name_rule>RULE_PARAMS_NUM)\/(?<rule_params_num_part>[^\/]+)\/(?<rule_params_num_threshold>\d+)'.freeze
       DETECT_NAME = "(?<detect_name>(?:#{RULE_SIG}|#{WAF_FILTER}|#{RULE_URLDECODE}|#{RULE_PARAMS_NUM}))".freeze
-      DETECT_STAT = "(?<detect_stat>DETECT-STAT:WAF:#{DETECT_NAME}::(?<detect_str>[^:]*):(?<detect_str_all>[^:]+):)".freeze
+      DETECT_STAT = "(?<detect_stat>DETECT-STAT:WAF:#{DETECT_NAME}::(?<detect_str>[^:]*)(:|::)(?<detect_str_all>[^:]+):)".freeze
 
       ACTION = '(?<action>ACTION:(?<action_str>[A-Z]+):)'.freeze
       JUDGE = '(?<judge>JUDGE:(?<judge_str>[A-Z]+):(?<monitor_url>0|1):)'.freeze
