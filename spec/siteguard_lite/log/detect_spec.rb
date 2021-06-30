@@ -100,7 +100,7 @@ RSpec.describe SiteguardLite::Log::Detect do
       }
 
       it { expect(subject['detect_name']).to eq 'RULE_SIG/PART_PARAM_VALUE|PART_GET_PARAM/Content-Type/OFFICIAL/00102001/xss-tag-1' }
-      it { expect(subject['cwontent_type']).to eq 'multipart/form-data' }
+      it { expect(subject['content_type']).to eq 'multipart/form-data' }
     end
 
     context 'when leading time exist' do
